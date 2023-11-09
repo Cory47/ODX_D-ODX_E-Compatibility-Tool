@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ODX MODEL-VERSION="2.2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="odx.xsd">
+  <FLASH ID="FL.test">
+    <SHORT-NAME>testECU</SHORT-NAME>
+    <LONG-NAME>test</LONG-NAME>
+    <ECU-MEMS>
+      <ECU-MEM ID="FL.test.EM.New_Session">
+        <SHORT-NAME>New_Session</SHORT-NAME>
+        <LONG-NAME>New Session</LONG-NAME>
+        <MEM>
+          <SESSIONS>
+            <SESSION ID="FL.test.EM.New_Session.SE.New_Session">
+              <SHORT-NAME>New_Session</SHORT-NAME>
+              <LONG-NAME>New Session</LONG-NAME>
+              <DATABLOCK-REFS>
+                <DATABLOCK-REF ID-REF="FL.test.EM.New_Session.DB.New_Datablock" />
+              </DATABLOCK-REFS>
+              <SDGS>
+                <SDG SI="FLASH_METHOD">
+                  <SD>Method 1</SD>
+                </SDG>
+              </SDGS>
+            </SESSION>
+          </SESSIONS>
+          <DATABLOCKS>
+            <DATABLOCK ID="FL.test.EM.New_Session.DB.New_Datablock" TYPE="DATA">
+              <SHORT-NAME>New_Datablock</SHORT-NAME>
+              <LONG-NAME>New Datablock</LONG-NAME>
+              <FLASHDATA-REF ID-REF="FL.test.EM.New_Session.FD.New_extern_Flashdata" />
+              <OWN-IDENTS>
+                <OWN-IDENT ID="FL.test.EM.New_Session.DB.New_Datablock.OID.SW_DIAGNOSTIC_VERSION">
+                  <SHORT-NAME>SW_DIAGNOSTIC_VERSION</SHORT-NAME>
+                  <LONG-NAME>New Diagnostic Version</LONG-NAME>
+                  <IDENT-VALUE TYPE="A_UINT32">16777215</IDENT-VALUE>
+                </OWN-IDENT>
+                <OWN-IDENT ID="FL.test.EM.New_Session.DB.New_Datablock.OID.SW_VERSION">
+                  <SHORT-NAME>SW_VERSION</SHORT-NAME>
+                  <LONG-NAME>SW Version</LONG-NAME>
+                  <IDENT-VALUE TYPE="A_ASCIISTRING" />
+                </OWN-IDENT>
+                <OWN-IDENT ID="FL.test.EM.New_Session.DB.New_Datablock.OID.SW_SUPPLIER">
+                  <SHORT-NAME>SW_SUPPLIER</SHORT-NAME>
+                  <LONG-NAME>SW Supplier</LONG-NAME>
+                  <IDENT-VALUE TYPE="A_UINT32">61439</IDENT-VALUE>
+                </OWN-IDENT>
+              </OWN-IDENTS>
+            </DATABLOCK>
+          </DATABLOCKS>
+          <FLASHDATAS>
+            <FLASHDATA ID="FL.test.EM.New_Session.FD.New_extern_Flashdata" xsi:type="EXTERN-FLASHDATA">
+              <SHORT-NAME>New_extern_Flashdata</SHORT-NAME>
+              <LONG-NAME>New extern Flashdata</LONG-NAME>
+              <DATAFORMAT SELECTION="BINARY" />
+              <DATAFILE LATEBOUND-DATAFILE="true">New extern Flashdata</DATAFILE>
+            </FLASHDATA>
+          </FLASHDATAS>
+        </MEM>
+      </ECU-MEM>
+    </ECU-MEMS>
+    <ECU-MEM-CONNECTORS>
+      <ECU-MEM-CONNECTOR ID="FL.test.EMC.New_Session">
+        <SHORT-NAME>New_Session</SHORT-NAME>
+        <LONG-NAME>New Session</LONG-NAME>
+        <FLASH-CLASSS>
+          <FLASH-CLASS ID="FL.test.EMC.New_Session.FC.Applikation">
+            <SHORT-NAME>Applikation</SHORT-NAME>
+            <LONG-NAME>Applikation</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für Funktionssoftware.</p>
+            </DESC>
+          </FLASH-CLASS>
+          <FLASH-CLASS ID="FL.test.EMC.New_Session.FC.Parameterdaten">
+            <SHORT-NAME>Parameterdaten</SHORT-NAME>
+            <LONG-NAME>Parameterdaten</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für Parameterdaten.</p>
+            </DESC>
+          </FLASH-CLASS>
+          <FLASH-CLASS ID="FL.test.EMC.New_Session.FC.Bootloader">
+            <SHORT-NAME>Bootloader</SHORT-NAME>
+            <LONG-NAME>Bootloader</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für flashbare Bootloader.</p>
+            </DESC>
+          </FLASH-CLASS>
+		    <FLASH-CLASS ID="FL.CTP.EMC.Skript_Test_9999999999_001.FC.Load_Spectra_Config">
+            <SHORT-NAME>Load_Spectra_Config</SHORT-NAME>
+            <LONG-NAME>Load_Spectra_Config</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für Load_Spectra_Config.</p>
+            </DESC>
+          </FLASH-CLASS>
+          <FLASH-CLASS ID="FL.CTP.EMC.Skript_Test_9999999999_001.FC.Firewall_Config">
+            <SHORT-NAME>Firewall_Config</SHORT-NAME>
+            <LONG-NAME>Firewall_Config</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für Firewall_Config.</p>
+            </DESC>
+          </FLASH-CLASS>
+          <FLASH-CLASS ID="FL.CTP.EMC.Skript_Test_9999999999_001.FC.Data_Logger_Config">
+            <SHORT-NAME>Data_Logger_Config</SHORT-NAME>
+            <LONG-NAME>Data_Logger_Config</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für Funktionssoftware.</p>
+            </DESC>
+          </FLASH-CLASS>
+          <FLASH-CLASS ID="FL.CTP.EMC.Skript_Test_9999999999_001.FC.Config_Container">
+            <SHORT-NAME>Config_Container</SHORT-NAME>
+            <LONG-NAME>Config_Container</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für Config_Container</p>
+            </DESC>
+          </FLASH-CLASS>
+          <FLASH-CLASS ID="FL.CTP.EMC.Skript_Test_9999999999_001.FC.Skript">
+            <SHORT-NAME>Skript</SHORT-NAME>
+            <LONG-NAME>Skript</LONG-NAME>
+            <DESC>
+              <p>Flashklasse für Skript</p>
+            </DESC>
+          </FLASH-CLASS>
+        </FLASH-CLASSS>
+        <SESSION-DESCS>
+          <SESSION-DESC DIRECTION="DOWNLOAD">
+            <SHORT-NAME>New_Session</SHORT-NAME>
+            <LONG-NAME>New Session</LONG-NAME>
+            <PRIORITY>100</PRIORITY>
+            <SESSION-SNREF SHORT-NAME="New_Session" />
+          </SESSION-DESC>
+        </SESSION-DESCS>
+        <ECU-MEM-REF ID-REF="FL.test.EM.New_Session" />
+        <LAYER-REFS>
+          <LAYER-REF ID-REF="BV.dummy" DOCREF="dummy" DOCTYPE="CONTAINER" />
+        </LAYER-REFS>
+        <ALL-VARIANT-REFS>
+          <ALL-VARIANT-REF ID-REF="BV.dummy" DOCREF="dummy" DOCTYPE="CONTAINER" />
+        </ALL-VARIANT-REFS>
+      </ECU-MEM-CONNECTOR>
+    </ECU-MEM-CONNECTORS>
+  </FLASH>
+</ODX>
