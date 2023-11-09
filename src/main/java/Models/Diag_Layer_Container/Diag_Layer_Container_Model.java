@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Diag_Layer_Container_Model {
     @JsonProperty("BASE-VARIANTS")
-    private ECU_Variant_Model BaseVariant;
+    private List<ECU_Variant_Model> BaseVariant;
     @JsonProperty("ECU-VARIANTS")
     private List<ECU_Variant_Model> ECUVariants;
 }
