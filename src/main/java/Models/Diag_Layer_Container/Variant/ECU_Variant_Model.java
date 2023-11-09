@@ -15,6 +15,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ECU_Variant_Model {
+    @JsonProperty("ID")
     private String id;
     @JsonProperty("SHORT-NAME")
     private String shortName;
