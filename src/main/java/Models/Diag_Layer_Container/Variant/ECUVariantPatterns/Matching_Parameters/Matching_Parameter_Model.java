@@ -1,3 +1,5 @@
+package Models.Diag_Layer_Container.Variant.ECUVariantPatterns.Matching_Parameters;
+
 import lombok.Builder;
 import lombok.Data;
 

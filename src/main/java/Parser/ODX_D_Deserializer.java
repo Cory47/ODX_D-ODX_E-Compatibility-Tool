@@ -1,21 +1,23 @@
-import com.fasterxml.jackson.core.JsonProcessingException;
+package Parser;
+
+import Models.ODX_Model;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.w3c.dom.Document;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 public class ODX_D_Deserializer {
 
     private static final String FILE_PATH = "src/main/resources/RDF03T_04.02.60.odx-d";
-    private static final String PARAM_TAG = "PARAM";
     private static final String DATA_OBJECT_TAG = "DATA-OBJECT-PROP";
 
     public static void main(String[] args) throws IOException, SAXException,
@@ -25,14 +27,22 @@ public class ODX_D_Deserializer {
         File file = new File(FILE_PATH);
 
         Parse_Param(mapper, file);
-        Parse_Data_Object_Prop(mapper,file);
-
-
+        //Parse_Data_Object_Prop(mapper,file);
         }
 
     private static void Parse_Param(ObjectMapper mapper, File file) throws IOException, ParserConfigurationException, SAXException {
         //Generate Document
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+
+        XmlMapper xmlMapper = new XmlMapper();
+        xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        // Read the XML file into a string (assuming the file contains only one <PARAM> element)
+        String xmlContent = Files.readString(Paths.get(FILE_PATH));
+
+        // Deserialize the XML content directly to an object
+        ODX_Model parameterModel = xmlMapper.readValue(xmlContent, ODX_Model.class);
+
+
+        /*DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(false);
         factory.setIgnoringElementContentWhitespace(true);
         DocumentBuilder builder = factory.newDocumentBuilder();
@@ -43,8 +53,9 @@ public class ODX_D_Deserializer {
 
         for (int i = 0; i < paramList.getLength(); i++) {
             Element paramElement = (Element) paramList.item(i);
-
-            String semantic = paramElement.getAttribute("SEMANTIC");
+            String data = paramElement.toString();
+            ODX_D_Parameter_Model parameterModel = mapper.readValue(data, ODX_D_Parameter_Model.class);
+            /* String semantic = paramElement.getAttribute("SEMANTIC");
             String shortName = getTagValue("SHORT-NAME", paramElement);
             String longName = getTagValue("LONG-NAME", paramElement);
             String bytePosition = getTagValue("BYTE-POSITION", paramElement);
@@ -55,17 +66,15 @@ public class ODX_D_Deserializer {
                     .shortName(shortName)
                     .longName(longName)
                     .bytePosition(bytePosition)
-                    .codedValue(codedValue).build();
+                    .codedValue(codedValue).build(); */
 
             //Convert object to JSON string and pretty print
             String jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(parameterModel);
 
-            //System.out.println(jsonString);
-            //System.out.println("----------------------------");
-        }
+            System.out.println(jsonString);
     }
 
-    private static void Parse_Data_Object_Prop(ObjectMapper mapper, File file) throws ParserConfigurationException, IOException, SAXException {
+    /*private static void Parse_Data_Object_Prop(ObjectMapper mapper, File file) throws ParserConfigurationException, IOException, SAXException {
         //Generate Document
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setValidating(false);
@@ -139,7 +148,7 @@ public class ODX_D_Deserializer {
 
 
 
-
+*/
 
     private static String getTagValue(String tag, Element element) {
         return Optional.of(element.getElementsByTagName(tag))

@@ -1,3 +1,6 @@
+package TODO;
+
+import Models.Diag_Layer_Container.Variant.ECUVariantPatterns.ECU_Variant_Pattern_Model;
 import lombok.Builder;
 import lombok.Data;
 

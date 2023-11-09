@@ -1,10 +1,19 @@
+package Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec;
+
+import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProp.Data_Object_Prop_Model;
+import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.Structures.Structure_Model;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
-@Builder
-public class Diag_Data_Dictionary_Model {
-    private String ID;
+@NoArgsConstructor
+public class Diag_Data_Dictionary_Spec_Model {
+    List<Data_Object_Prop_Model> dataObjectProps;
+    List<Structure_Model> Structures;
+    /*private String id;
     private String shortName;
     private String longName;
     private String compuMethod;
@@ -21,5 +30,5 @@ public class Diag_Data_Dictionary_Model {
     private String internalConstr;
     private String scaleConstrValidity;
     private String lowerLimitSCV;
-    private String upperLimitSCV;
+    private String upperLimitSCV;*/
 }

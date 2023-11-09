@@ -1,3 +1,5 @@
+package Models.Diag_Layer_Container.Variant.Parent_Refs.Not_Inhereted_Diag_Comm;
+
 import lombok.Builder;
 import lombok.Data;
 
