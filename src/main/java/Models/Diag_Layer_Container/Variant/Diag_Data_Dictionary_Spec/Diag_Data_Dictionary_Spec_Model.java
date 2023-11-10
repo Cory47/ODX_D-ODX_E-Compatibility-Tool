@@ -1,6 +1,5 @@
 package Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec;
 
-import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProps.DataObjectProp.Data_Object_Prop_Model;
 import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProps.Data_Object_Props_Model;
 import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.Structures.Structure_Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
