@@ -1,6 +1,6 @@
 package Models.Diag_Layer_Container;
 
-import Models.Diag_Layer_Container.Variant.ECU_Variant_Model;
+import Models.Diag_Layer_Container.Variants.Variant.ECU_Variant_Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
