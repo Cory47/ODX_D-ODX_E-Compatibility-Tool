@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Diag_Data_Dictionary_Spec_Model {
     @JsonProperty("DATA-OBJECT-PROPS")
-    private Data_Object_Props_Model dataObjectProps;
+    List<Data_Object_Props_Model> dataObjectProps;
     List<Structure_Model> Structures;
     /*private String id;
     private String shortName;
