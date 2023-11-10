@@ -1,4 +1,4 @@
-package Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProps.DataObjectProp.Compu_Method.CompuIntenalToPhys.CompuScale.CompuConst;
+package Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProps.DataObjectProp.Compu_Method.CompuIntenalToPhys.CompuScales.CompuConst;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
