@@ -1,6 +1,6 @@
-package Models.Diag_Layer_Container.Variant.ECUVariantPatterns;
+package Models.Diag_Layer_Container.Variant.ECU_Variant_Patterns;
 
-import Models.Diag_Layer_Container.Variant.ECUVariantPatterns.Matching_Parameters.Matching_Parameter_Model;
+import Models.Diag_Layer_Container.Variant.ECU_Variant_Patterns.Matching_Parameters.Matching_Parameter_Model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

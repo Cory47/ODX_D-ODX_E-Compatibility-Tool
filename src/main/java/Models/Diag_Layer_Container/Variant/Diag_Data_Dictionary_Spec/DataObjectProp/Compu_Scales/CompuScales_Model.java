@@ -1,4 +1,4 @@
-package TODO;
+package Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProp.Compu_Scales;
 
 import lombok.Builder;
 import lombok.Data;
