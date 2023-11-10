@@ -1,8 +1,9 @@
 package Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec;
 
-import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProp.Data_Object_Prop_Model;
+import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProps.DataObjectProp.Data_Object_Prop_Model;
+import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProps.Data_Object_Props_Model;
 import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.Structures.Structure_Model;
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Diag_Data_Dictionary_Spec_Model {
-    List<Data_Object_Prop_Model> dataObjectProps;
+    @JsonProperty("DATA-OBJECT-PROPS")
+    private Data_Object_Props_Model dataObjectProps;
     List<Structure_Model> Structures;
     /*private String id;
     private String shortName;

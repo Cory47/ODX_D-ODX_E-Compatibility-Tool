@@ -1,6 +1,6 @@
 package Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.Structures.Params;
 
-import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProp.Data_Object_Prop_Model;
+import Models.Diag_Layer_Container.Variant.Diag_Data_Dictionary_Spec.DataObjectProps.DataObjectProp.Data_Object_Prop_Model;
 import lombok.Builder;
 import lombok.Data;
 
