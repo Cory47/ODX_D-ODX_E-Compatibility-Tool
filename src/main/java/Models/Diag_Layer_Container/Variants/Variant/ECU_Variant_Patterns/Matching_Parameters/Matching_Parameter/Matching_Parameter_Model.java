@@ -1,5 +1,7 @@
 package Models.Diag_Layer_Container.Variants.Variant.ECU_Variant_Patterns.Matching_Parameters.Matching_Parameter;
 
+import Models.Diag_Layer_Container.Variants.Variant.ECU_Variant_Patterns.ECU_Variant_Pattern.Matching_Parameters.Matching_Parameter.Out_Param_If_SNREF.Out_Param_If_SNREF_Model;
+import Models.Diag_Layer_Container.Variants.Variant.Parent_Refs.Parent_Ref.Not_Inherited_Diag_Comms.Not_Inhereted_Diag_Comm.Diag_Comm_SNREF.Diag_Comm_SNREF_Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
@@ -9,9 +11,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Matching_Parameter_Model {
     @JsonProperty("EXPECTED-VALUE")
-    private int expectedValue;
-    @JsonProperty("DIAG-COMM-SNREF-SHORT-NAME")
-    private String diagCommSNREFShortName;
-    @JsonProperty("OUT-PARAM-IF-SNREF-SHORT-NAME")
-    private String outParamIfSNREFShortName;
+    private String expectedValue;
+    @JsonProperty("DIAG-COMM-SNREF")
+    private Diag_Comm_SNREF_Model diagCommSNREF;
+    @JsonProperty("OUT-PARAM-IF-SNREF")
+    private Out_Param_If_SNREF_Model outParamIfSNREFShortName;
 }

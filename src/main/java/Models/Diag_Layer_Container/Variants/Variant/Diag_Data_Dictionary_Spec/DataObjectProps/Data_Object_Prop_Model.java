@@ -25,6 +25,5 @@ public class Data_Object_Prop_Model {
     private Physical_Type_Model physicalType;
     @JsonProperty("INTERNAL-CONSTR")
     private Internal_Const_Model internalConst;
-    //private Internal_Constructor_Model internalConstructor;
 
 }

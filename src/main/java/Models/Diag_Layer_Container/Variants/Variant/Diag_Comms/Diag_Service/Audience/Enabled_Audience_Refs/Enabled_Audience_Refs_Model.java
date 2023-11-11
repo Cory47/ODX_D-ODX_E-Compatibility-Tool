@@ -12,6 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 
 public class Enabled_Audience_Refs_Model {
-    @JsonProperty("ENABLED-AUDIENCE-REF")
+    @JsonProperty("ENABLED-AUDIENCE-REFS")
     private List<Enabled_Audience_Ref_Model> enabledAudienceRef;
 }

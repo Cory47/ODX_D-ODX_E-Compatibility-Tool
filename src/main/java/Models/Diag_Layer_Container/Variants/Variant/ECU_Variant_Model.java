@@ -24,12 +24,12 @@ public class ECU_Variant_Model {
     @JsonProperty("DIAG-DATA-DICTIONARY-SPEC")
     private Diag_Data_Dictionary_Spec_Model diagDataDictionarySpec;
     @JsonProperty("REQUESTS")
-    private Request_Model requests;
-    @JsonProperty("POS-RESPONSE")
+    private List<Request_Model> requests;
+    @JsonProperty("POS-RESPONSES")
     private List<Pos_Response_Model> posResponses;
-    @JsonProperty("NEG-RESPONSE")
+    @JsonProperty("NEG-RESPONSES")
     private List<Neg_Response_Model> negResponses;
-    @JsonProperty("ECU-VARIANT_PATTERN")
+    @JsonProperty("ECU-VARIANT-PATTERNS")
     private List<ECU_Variant_Pattern_Model> ECUVariantPatterns;
     @JsonProperty("PARENT-REFS")
     private List<Parent_Ref_Model> Parent_Refs;

@@ -11,6 +11,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 class ECU_Variant_Patterns_Model {
-    @JsonProperty("ECU-VARIANT-PATTERN")
+    @JsonProperty("ECU-VARIANT-PATTERNS")
     private List<ECU_Variant_Pattern_Model> ecuVariantPattern;
 }

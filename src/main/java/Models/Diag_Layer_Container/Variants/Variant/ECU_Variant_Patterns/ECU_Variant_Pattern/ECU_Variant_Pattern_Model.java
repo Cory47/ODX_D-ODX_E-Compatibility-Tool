@@ -10,6 +10,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class ECU_Variant_Pattern_Model {
-    @JsonProperty("MATCHING-PARAMETER")
+    @JsonProperty("MATCHING-PARAMETERS")
     private List<Matching_Parameter_Model> matchingParameter;
 }

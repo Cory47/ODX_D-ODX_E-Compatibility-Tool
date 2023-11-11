@@ -16,6 +16,6 @@ public class Request_Model {
     private String shortName;
     @JsonProperty("LONG-NAME")
     private String longName;
-    @JsonProperty("PARAM")
+    @JsonProperty("PARAMS")
     private List<Param_Model> parameters;
 }
