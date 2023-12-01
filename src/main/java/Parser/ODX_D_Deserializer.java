@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 
 @SpringBootApplication
 public class ODX_D_Deserializer {
-    private static final String FILE_PATH = "src/main/resources/RDF03T_04.02.60.odx-d";
+    private static final String FILE_PATH = "src/main/resources/Test.odx-d";
     private final XmlMapper xmlMapper;
     private final ObjectMapper mapper;
     private final ObjectWriter writer;
@@ -30,16 +30,16 @@ public class ODX_D_Deserializer {
 
     public static void main(String[] args) {
         SpringApplication.run(ODX_D_Deserializer.class, args);
-       /* try {
+        try {
             ODX_D_Deserializer deserializer = new ODX_D_Deserializer();
             ODX_Model odxModel = deserializer.deserializeODX(FILE_PATH);
             //TODO: Any transformations to the JSON will be performed here
-            deserializer.writeToFile(odxModel);
+            deserializer.writeToFile(odxModel, "src/main/java/Output/output.json");
             String jsonString = deserializer.serializeToJson(odxModel);
             System.out.println(jsonString);
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public ODX_Model deserializeODX(String filePath) throws IOException {
@@ -51,8 +51,8 @@ public class ODX_D_Deserializer {
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model);
     }
 
-    public void writeToFile(ODX_Model model) throws IOException {
-        writer.writeValue(new File("src/main/java/Output/output.json"), model);
+    public void writeToFile(ODX_Model model, String filePath) throws IOException {
+        writer.writeValue(new File(filePath), model);
     }
 }
 
