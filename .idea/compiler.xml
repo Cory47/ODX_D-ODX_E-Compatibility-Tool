@@ -10,9 +10,6 @@
         <module name="ODX_D_Parameter_Parser" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="ODX_D_Parameter_Parser" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

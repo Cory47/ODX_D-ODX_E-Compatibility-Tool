@@ -1,15 +1,11 @@
 package Parser;
 
-import Models.Diag_Layer_Container.Diag_Layer_Container_Model;
-import Models.ODX_Model;
-import org.apache.tomcat.util.http.fileupload.FileUtils;
-import org.junit.Before;
+import ODX_D_Model.Diag_Layer_Container.Diag_Layer_Container_Model;
+import ODX_D_Model.ODX_D_Model;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -24,8 +20,8 @@ class ODX_D_DeserializerTest {
     @Test
     void testDeserializeODX() throws IOException {
         deserializer = new ODX_D_Deserializer();
-        ODX_Model actualOutput = deserializer.deserializeODX(ODX_D_FILE_PATH);
-        ODX_Model expectedOutput =  new ODX_Model();
+        ODX_D_Model actualOutput = deserializer.deserializeODX(ODX_D_FILE_PATH);
+        ODX_D_Model expectedOutput =  new ODX_D_Model();
         Diag_Layer_Container_Model diagLayerContainerModel = new Diag_Layer_Container_Model();
         expectedOutput.setDiagLayerContainer(diagLayerContainerModel);
         assertEquals(actualOutput, expectedOutput);
@@ -33,7 +29,7 @@ class ODX_D_DeserializerTest {
 
     @Test
     void testSerializeToJson() throws IOException {
-        ODX_Model input =  new ODX_Model();
+        ODX_D_Model input =  new ODX_D_Model();
         Diag_Layer_Container_Model diagLayerContainerModel = new Diag_Layer_Container_Model();
         input.setDiagLayerContainer(diagLayerContainerModel);
         deserializer = new ODX_D_Deserializer();
@@ -44,7 +40,7 @@ class ODX_D_DeserializerTest {
 
     @Test
     void testWriteToFile() throws IOException {
-        ODX_Model input =  new ODX_Model();
+        ODX_D_Model input =  new ODX_D_Model();
         Diag_Layer_Container_Model diagLayerContainerModel = new Diag_Layer_Container_Model();
         input.setDiagLayerContainer(diagLayerContainerModel);
         deserializer = new ODX_D_Deserializer();
