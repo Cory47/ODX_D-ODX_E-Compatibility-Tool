@@ -1,6 +1,6 @@
 package ODX_E_Model;
 
-import ODX_E_Model.ECU_Config_Model.ECU_Config_Model;
+import ODX_E_Model.ECU_Config.ECU_Config_Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
