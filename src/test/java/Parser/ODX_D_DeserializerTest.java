@@ -18,9 +18,9 @@ class ODX_D_DeserializerTest {
     private ODX_D_Deserializer deserializer;
 
     @Test
-    void testDeserializeODX() throws IOException {
+    void testDeserializeODX_D() throws IOException {
         deserializer = new ODX_D_Deserializer();
-        ODX_D_Model actualOutput = deserializer.deserializeODX(ODX_D_FILE_PATH);
+        ODX_D_Model actualOutput = deserializer.deserializeODX_D(ODX_D_FILE_PATH);
         ODX_D_Model expectedOutput =  new ODX_D_Model();
         Diag_Layer_Container_Model diagLayerContainerModel = new Diag_Layer_Container_Model();
         expectedOutput.setDiagLayerContainer(diagLayerContainerModel);

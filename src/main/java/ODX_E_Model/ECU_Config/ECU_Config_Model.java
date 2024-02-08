@@ -1,7 +1,6 @@
 package ODX_E_Model.ECU_Config;
 
-import ODX_E_Model.ECU_Config.Config_Datas.Config_Data.Config_Data_Model;
-import ODX_E_Model.ECU_Config.Config_Datas.Config_Datas_Model;
+import ODX_E_Model.ECU_Config.Config_Data.Config_Data_Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +16,6 @@ public class ECU_Config_Model {
     private String shortName;
     @JsonProperty("LONG-NAME")
     private String longName;
-    //TODO: This is printing null, needs to be fixed
-    @JsonProperty("CONFIG-DATA")
+    @JsonProperty("CONFIG-DATAS")
     private List<Config_Data_Model> configData;
 }
