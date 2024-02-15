@@ -119,7 +119,7 @@ class ODX_E_Parser {
         xmlMapper = new XmlMapper();
         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
-
+    // ODX-E Postman Parser
     @PostMapping("/ODX-E")
     public ResponseEntity<String> handleFileUpload(@RequestParam("file") MultipartFile file) {
         try {
