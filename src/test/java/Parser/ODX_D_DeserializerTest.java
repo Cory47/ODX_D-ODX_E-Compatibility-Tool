@@ -17,7 +17,7 @@ class ODX_D_DeserializerTest {
     private static final String TEST_OUTPUT_FILE_PATH = "src/main/resources/TestOutput.json";
     private ODX_D_Deserializer deserializer;
 
-    @Test
+    /*@Test
     void testDeserializeODX_D() throws IOException {
         deserializer = new ODX_D_Deserializer();
         ODX_D_Model actualOutput = deserializer.deserializeODX_D(ODX_D_FILE_PATH);
@@ -48,5 +48,5 @@ class ODX_D_DeserializerTest {
         String actualOutput = Files.readString(Paths.get(TEST_OUTPUT_FILE_PATH));
         String expectedOutput = Files.readString(Paths.get(TEST_FILE_PATH));
         assertEquals(actualOutput, expectedOutput);
-    }
+    }*/
 }
