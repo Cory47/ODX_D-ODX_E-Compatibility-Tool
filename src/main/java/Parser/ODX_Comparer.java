@@ -24,12 +24,20 @@ public class ODX_Comparer {
         List<String> shortNameODXD = getValuesInObject(odxDObject, "SHORT-NAME");
         List<String> shortNameODXE = getValuesInObject(odxEObject, "SHORT-NAME");
 
+        onlyODXD = getOnlyODXDParams(shortNameODXE, shortNameODXD);
         onlyODXE = getOnlyODXEParams(shortNameODXD, shortNameODXE);
 
         //System.out.println(Arrays.toString(matches.toArray()));
-        //System.out.println(Arrays.toString(onlyODXD.toArray()));
-        System.out.println(Arrays.toString(onlyODXE.toArray()));
+        System.out.println("Only ODX-D:\n" + Arrays.toString(onlyODXD.toArray()));
+        System.out.println("Only ODX-E:\n" + Arrays.toString(onlyODXE.toArray()));
 
+    }
+
+    public List<String> getOnlyODXDParams(List<String> odxEList, List<String> odxDList) {
+        List<String> odxDParams = new ArrayList<>(odxDList);
+        odxDParams.removeAll(odxEList);
+        //System.out.println(Arrays.toString(odxDParams.toArray()));
+        return odxDParams;
     }
 
     public List<String> getOnlyODXEParams(List<String> odxDList, List<String> odxEList) {
@@ -38,6 +46,7 @@ public class ODX_Comparer {
         //System.out.println(Arrays.toString(odxEParams.toArray()));
         return odxEParams;
     }
+
 
     //Source: https://www.baeldung.com/java-jsonobject-get-value
     public List<String> getValuesInObject(JSONObject jsonObject, String key) {

@@ -40,7 +40,7 @@ public class ODX_D_Deserializer {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(ODX_D_Deserializer.class, args);
+        //SpringApplication.run(ODX_D_Deserializer.class, args);
         try {
             ODX_D_Deserializer deserializer = new ODX_D_Deserializer();
             ODX_D_Model odxDModel = deserializer.deserializeODX_D(ODX_D_FILE_PATH);
