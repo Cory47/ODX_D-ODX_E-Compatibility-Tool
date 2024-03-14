@@ -41,9 +41,22 @@ public class ODX_Comparer {
 //        System.out.println(Arrays.toString(shortNameODXD.toArray()));
 //        System.out.println(Arrays.toString(shortNameODXE.toArray()));
         System.out.println(matches);
+        onlyODXE = getOnlyODXEParams(shortNameODXD, shortNameODXE);
+
+        //System.out.println(Arrays.toString(matches.toArray()));
+        //System.out.println(Arrays.toString(onlyODXD.toArray()));
+        System.out.println(Arrays.toString(onlyODXE.toArray()));
 
     }
 
+    public List<String> getOnlyODXEParams(List<String> odxDList, List<String> odxEList) {
+        List<String> odxEParams = new ArrayList<>(odxEList);
+        odxEParams.removeAll(odxDList);
+        //System.out.println(Arrays.toString(odxEParams.toArray()));
+        return odxEParams;
+    }
+
+    //Source: https://www.baeldung.com/java-jsonobject-get-value
     public List<String> getValuesInObject(JSONObject jsonObject, String key) {
         List<String> accumulatedValues = new ArrayList<>();
         for (String currentKey : jsonObject.keySet()) {
