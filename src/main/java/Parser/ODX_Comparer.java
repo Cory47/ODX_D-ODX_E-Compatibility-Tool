@@ -6,9 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ODX_Comparer {
 
@@ -24,8 +22,25 @@ public class ODX_Comparer {
         List<String> shortNameODXD = getValuesInObject(odxDObject, "SHORT-NAME");
         List<String> shortNameODXE = getValuesInObject(odxEObject, "SHORT-NAME");
 
-        //System.out.println(Arrays.toString(shortNameODXD.toArray()));
-        //System.out.println(Arrays.toString(shortNameODXE.toArray()));
+        Set<String> odxEShortNameSet = new HashSet<>(shortNameODXE);
+
+        // Handles null exception error
+        if (matches == null) {
+            matches = new ArrayList<>();
+        } else {
+            matches.clear();
+        }
+
+        // Loop through short names in odxD and add matches to list
+        for (String shortName : shortNameODXD) {
+            if (odxEShortNameSet.contains(shortName)) {
+                matches.add(shortName);
+            }
+        }
+
+//        System.out.println(Arrays.toString(shortNameODXD.toArray()));
+//        System.out.println(Arrays.toString(shortNameODXE.toArray()));
+        System.out.println(matches);
 
     }
 
