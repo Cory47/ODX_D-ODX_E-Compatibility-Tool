@@ -29,12 +29,14 @@ public class ODX_D_Deserializer {
     private final XmlMapper xmlMapper;
     private final ObjectMapper mapper;
     private final ObjectWriter writer;
+    private static ODX_Comparer comparer;
 
     public ODX_D_Deserializer() {
         mapper = new ObjectMapper();
         xmlMapper = new XmlMapper();
         writer = mapper.writer(new DefaultPrettyPrinter());
         xmlMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        comparer = new ODX_Comparer();
     }
 
     public static void main(String[] args) {
@@ -44,10 +46,15 @@ public class ODX_D_Deserializer {
             ODX_D_Model odxDModel = deserializer.deserializeODX_D(ODX_D_FILE_PATH);
             ODX_E_Model odxEModel = deserializer.deserializeODX_E(ODX_E_FILE_PATH);
             //TODO: Any transformations to the JSON will be performed here
+
             deserializer.writeToFile(odxDModel, String.format(OUTPUT_PATH, "ODX-D"));
             deserializer.writeToFile(odxEModel, String.format(OUTPUT_PATH, "ODX-E"));
-            String jsonString = deserializer.serializeToJson(odxDModel);
-            System.out.println(jsonString);
+
+            String ODXDJsonString = deserializer.serializeToJson(odxDModel);
+            String ODXEJsonString = deserializer.serializeToJson(odxEModel);
+
+            comparer.compareODXModels(ODXDJsonString, ODXEJsonString);
+            //System.out.println(jsonString);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,6 +74,9 @@ public class ODX_D_Deserializer {
         return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model);
     }
 
+    public String serializeToJson(ODX_E_Model model) throws IOException {
+        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(model);
+    }
     public void writeToFile(ODX_D_Model model, String filePath) throws IOException {
         writer.writeValue(new File(filePath), model);
     }
