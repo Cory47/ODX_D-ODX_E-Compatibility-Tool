@@ -85,6 +85,7 @@ public class ODX_D_Deserializer {
         writer.writeValue(new File(filePath), model);
     }
 }
+/*
 @RestController
 class ODX_D_Parser {
     private final XmlMapper xmlMapper;
@@ -169,3 +170,4 @@ class compare{
         }
     }
 }
+*/

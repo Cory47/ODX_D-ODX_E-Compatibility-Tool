@@ -2,6 +2,10 @@ package Parser;
 
 import ODX_D_Model.ODX_D_Model;
 import ODX_E_Model.ODX_E_Model;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -9,10 +13,15 @@ import java.io.IOException;
 import java.util.*;
 
 public class ODX_Comparer {
+    CSVWriter csvWriter;
 
     List<String> matches;
     List<String> onlyODXD;
     List<String> onlyODXE;
+
+    public ODX_Comparer() {
+        csvWriter = new CSVWriter();
+    }
 
     public void compareODXModels(String odxD, String odxE) throws IOException {
         //Loop through odxD and store each short name field in a hashmap
@@ -56,6 +65,7 @@ public class ODX_Comparer {
         System.out.println("Only in ODX-D:\n" + Arrays.toString(onlyODXD.toArray()));
         System.out.println("Only in ODX-E:\n" + Arrays.toString(onlyODXE.toArray()));
 
+        csvWriter.writeValues(matches, onlyODXD, onlyODXE);
     }
 
     public List<String> getOnlyODXDParams(List<String> odxEList, List<String> odxDList) {
@@ -91,6 +101,7 @@ public class ODX_Comparer {
         return accumulatedValues;
     }
 
+    //Source: https://www.baeldung.com/java-jsonobject-get-value
     public List<String> getValuesInArray(JSONArray jsonArray, String key) {
         List<String> accumulatedValues = new ArrayList<>();
         for (Object obj : jsonArray) {
