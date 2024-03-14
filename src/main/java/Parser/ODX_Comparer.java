@@ -31,6 +31,8 @@ public class ODX_Comparer {
             matches.clear();
         }
 
+
+
         // Loop through short names in odxD and add matches to list
         for (String shortName : shortNameODXD) {
             if (odxEShortNameSet.contains(shortName)) {
@@ -42,6 +44,12 @@ public class ODX_Comparer {
 //        System.out.println(Arrays.toString(shortNameODXE.toArray()));
         onlyODXD = getOnlyODXDParams(shortNameODXE, shortNameODXD);
         onlyODXE = getOnlyODXEParams(shortNameODXD, shortNameODXE);
+
+        System.out.println("Number of matches: " + matches.size() + "\n");
+        int mismatch = onlyODXD.size() + onlyODXE.size();
+        System.out.println("Number of mismatches: " + mismatch + "\n");
+        int numNames = onlyODXD.size() + onlyODXE.size() + matches.size();
+        System.out.println("Total number of names in file: " + numNames + "\n");
 
         //System.out.println(Arrays.toString(matches.toArray()));
         System.out.println("ODX-D and ODX-E matches:\n" + matches);
