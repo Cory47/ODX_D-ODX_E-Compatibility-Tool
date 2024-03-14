@@ -6,9 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ODX_Comparer {
 
@@ -24,12 +22,31 @@ public class ODX_Comparer {
         List<String> shortNameODXD = getValuesInObject(odxDObject, "SHORT-NAME");
         List<String> shortNameODXE = getValuesInObject(odxEObject, "SHORT-NAME");
 
+        Set<String> odxEShortNameSet = new HashSet<>(shortNameODXE);
+
+        // Handles null exception error
+        if (matches == null) {
+            matches = new ArrayList<>();
+        } else {
+            matches.clear();
+        }
+
+        // Loop through short names in odxD and add matches to list
+        for (String shortName : shortNameODXD) {
+            if (odxEShortNameSet.contains(shortName)) {
+                matches.add(shortName);
+            }
+        }
+
+//        System.out.println(Arrays.toString(shortNameODXD.toArray()));
+//        System.out.println(Arrays.toString(shortNameODXE.toArray()));
         onlyODXD = getOnlyODXDParams(shortNameODXE, shortNameODXD);
         onlyODXE = getOnlyODXEParams(shortNameODXD, shortNameODXE);
 
         //System.out.println(Arrays.toString(matches.toArray()));
-        System.out.println("Only ODX-D:\n" + Arrays.toString(onlyODXD.toArray()));
-        System.out.println("Only ODX-E:\n" + Arrays.toString(onlyODXE.toArray()));
+        System.out.println("ODX-D and ODX-E matches:\n" + matches);
+        System.out.println("Only in ODX-D:\n" + Arrays.toString(onlyODXD.toArray()));
+        System.out.println("Only in ODX-E:\n" + Arrays.toString(onlyODXE.toArray()));
 
     }
 
@@ -46,7 +63,6 @@ public class ODX_Comparer {
         //System.out.println(Arrays.toString(odxEParams.toArray()));
         return odxEParams;
     }
-
 
     //Source: https://www.baeldung.com/java-jsonobject-get-value
     public List<String> getValuesInObject(JSONObject jsonObject, String key) {
