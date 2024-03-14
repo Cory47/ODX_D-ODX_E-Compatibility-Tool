@@ -1,5 +1,6 @@
 package ODX_D_Model.Diag_Layer_Container.Variants.Variant;
 
+import ODX_D_Model.Diag_Layer_Container.Variants.Variant.Diag_Comms.Diag_Comms_Model;
 import ODX_D_Model.Diag_Layer_Container.Variants.Variant.Parent_Refs.Parent_Ref.Parent_Ref_Model;
 import ODX_D_Model.Diag_Layer_Container.Variants.Variant.ECU_Variant_Patterns.ECU_Variant_Pattern.ECU_Variant_Pattern_Model;
 import ODX_D_Model.Diag_Layer_Container.Variants.Variant.Neg_Responses.Neg_Response_Model;
@@ -33,4 +34,6 @@ public class ECU_Variant_Model {
     private List<ECU_Variant_Pattern_Model> ECUVariantPatterns;
     @JsonProperty("PARENT-REFS")
     private List<Parent_Ref_Model> Parent_Refs;
+    @JsonProperty("DIAG-COMMS")
+    private List<Diag_Comms_Model> diagComms;
 }

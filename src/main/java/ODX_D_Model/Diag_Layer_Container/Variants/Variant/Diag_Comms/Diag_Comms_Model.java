@@ -10,6 +10,11 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Diag_Comms_Model {
-    @JsonProperty("DIAG-SERVICE")
-    private List<Diag_Service_Model> diagService;
+
+    @JsonProperty("ID")
+    private String Diag_Service_ID;
+    @JsonProperty("SHORT-NAME")
+    private String shortName;
+    @JsonProperty("LONG-NAME")
+    private String longName;
 }
