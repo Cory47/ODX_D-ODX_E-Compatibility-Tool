@@ -10,6 +10,10 @@ package Parser;
 
 import ODX_D_Model.ODX_D_Model;
 import ODX_E_Model.ODX_E_Model;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,6 +24,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class ODX_Comparer {
+    CSVWriter csvWriter;
 
     //List of short names common to both ODX-D and ODX-E
     List<String> matches;
@@ -32,6 +37,10 @@ public class ODX_Comparer {
     public String userHome = System.getProperty("user.home");
     //Specify the output path on the user's desktop
     public String desktopPath = userHome + File.separator + "Desktop" + File.separator + "ODXComparer.csv";
+
+    public ODX_Comparer() {
+        csvWriter = new CSVWriter();
+    }
 
     //Method to compare ODX models and write comparison results to a CSV file
     public void compareODXModels(String odxD, String odxE, String desktopPath) throws IOException {
@@ -67,6 +76,17 @@ public class ODX_Comparer {
         onlyODXD = getOnlyODXDParams(shortNameODXE, shortNameODXD);
         onlyODXE = getOnlyODXEParams(shortNameODXD, shortNameODXE);
 
+        //Print the number of matches found between ODX-D and ODX-E models
+        System.out.println("Number of matches: " + matches.size() + "\n");
+        //Calculate the total number of mismatches by summing the sizes of lists onlyODXD and onlyODXE
+        int mismatch = onlyODXD.size() + onlyODXE.size();
+        //Print the number of mismatches found
+        System.out.println("Number of mismatches: " + mismatch + "\n");
+        //Calculate the total number of names by summing the sizes of lists onlyODXD, onlyODXE, and matches
+        int numNames = onlyODXD.size() + onlyODXE.size() + matches.size();
+        //Print the total number of names in the file
+        System.out.println("Total number of names in file: " + numNames + "\n");
+
         //System.out.println(Arrays.toString(matches.toArray()));
         //Write comparison results to the CSV file
         try (FileWriter writer = new FileWriter(desktopPath)) {
@@ -83,6 +103,9 @@ public class ODX_Comparer {
             //Write parameters only in ODX-E
             writer.write(Arrays.toString(onlyODXE.toArray()) + "\n");
         }
+
+        //Prints out the number of matches for each
+        csvWriter.writeValues(matches, onlyODXD, onlyODXE);
     }
 
     //Method to get parameters only in ODX-D
@@ -121,6 +144,7 @@ public class ODX_Comparer {
         return accumulatedValues;
     }
 
+    //Source: https://www.baeldung.com/java-jsonobject-get-value
     //Method to extract values associated with a given key from a JSONArray
     public List<String> getValuesInArray(JSONArray jsonArray, String key) {
         List<String> accumulatedValues = new ArrayList<>();

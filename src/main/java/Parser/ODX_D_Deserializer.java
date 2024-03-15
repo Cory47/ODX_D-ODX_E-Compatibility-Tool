@@ -111,6 +111,7 @@ public class ODX_D_Deserializer {
 }
 
 //Handles ODX-D files
+/*
 @RestController
 class ODX_D_Parser {
     private final XmlMapper xmlMapper;
@@ -205,3 +206,4 @@ class compare{
         }
     }
 }
+*/
