@@ -76,36 +76,43 @@ public class ODX_Comparer {
         onlyODXD = getOnlyODXDParams(shortNameODXE, shortNameODXD);
         onlyODXE = getOnlyODXEParams(shortNameODXD, shortNameODXE);
 
-        //Print the number of matches found between ODX-D and ODX-E models
-        System.out.println("Number of matches: " + matches.size() + "\n");
         //Calculate the total number of mismatches by summing the sizes of lists onlyODXD and onlyODXE
         int mismatch = onlyODXD.size() + onlyODXE.size();
-        //Print the number of mismatches found
-        System.out.println("Number of mismatches: " + mismatch + "\n");
         //Calculate the total number of names by summing the sizes of lists onlyODXD, onlyODXE, and matches
         int numNames = onlyODXD.size() + onlyODXE.size() + matches.size();
-        //Print the total number of names in the file
-        System.out.println("Total number of names in file: " + numNames + "\n");
 
         //System.out.println(Arrays.toString(matches.toArray()));
         //Write comparison results to the CSV file
         try (FileWriter writer = new FileWriter(desktopPath)) {
-            //Write column header "ODX-D and ODX-E matches"
-            writer.write("ODX-D and ODX-E matches:\n");
+            //Write row header "Number of matches"
+            writer.write("Number of matches:\n");
+            //Write number of matches between ODX-D and ODX-E
+            writer.write(matches.size() + "\n");
+            //Write row header "Number of mismatches"
+            writer.write("Number of mismatches:\n");
+            //Write number of mismatches between ODX-D and ODX-E
+            writer.write(mismatch + "\n");
+            //Write row header "Total number of names in file"
+            writer.write("Total number of names in file:\n");
+            //Write total number of names in the file
+            writer.write(numNames + "\n");
+
+            //Write row header "ODX-D and ODX-E matches"
+            writer.write("\nODX-D and ODX-E matches:\n");
             //Write parameters in both ODX-D and ODX-E
-            writer.write(matches + "\n");
-            //Write column header "Only in ODX-D"
+            writer.write(Arrays.toString(matches.toArray()) + "\n");
+            //Write row header "Only in ODX-D"
             writer.write("\nOnly in ODX-D:\n");
             //Write parameters only in ODX-D
             writer.write(Arrays.toString(onlyODXD.toArray()) + "\n");
-            //Write column header "Only in ODX-E"
-            writer.write("\nOnly in ODX-E:\n");
+            //Write row header "Only in ODX-E"
+            writer.write("\nOnly in ODX-E:");
             //Write parameters only in ODX-E
             writer.write(Arrays.toString(onlyODXE.toArray()) + "\n");
         }
 
         //Prints out the number of matches for each
-        csvWriter.writeValues(matches, onlyODXD, onlyODXE);
+        //csvWriter.writeValues(matches, onlyODXD, onlyODXE);
     }
 
     //Method to get parameters only in ODX-D
