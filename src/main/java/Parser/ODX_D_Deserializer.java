@@ -34,7 +34,7 @@ public class ODX_D_Deserializer {
     //File paths for ODX-D and ODX-E files and output path for JSON files
     private static final String ODX_D_FILE_PATH = "src/main/resources/ICC5_Parser/ICC501T_01.01.810.odx-d";
     private static final String ODX_E_FILE_PATH = "src/main/resources/ICC5_Parser/ICC501T_VARCODE.odx-e";
-    private static final String OUTPUT_PATH = "src/main/java/Output/%s-Output.json";
+    private static final String OUTPUT_PATH = "src/main/java/Output/%s";
 
     //Initialize XML mapper, JSON mapper, and writer
     private final XmlMapper xmlMapper;
@@ -59,18 +59,17 @@ public class ODX_D_Deserializer {
             ODX_D_Deserializer deserializer = new ODX_D_Deserializer();
             ODX_D_Model odxDModel = deserializer.deserializeODX_D(ODX_D_FILE_PATH);
             ODX_E_Model odxEModel = deserializer.deserializeODX_E(ODX_E_FILE_PATH);
-            //TODO: Any transformations to the JSON will be performed here
 
             //Write JSON output files
-            deserializer.writeToFile(odxDModel, String.format(OUTPUT_PATH, "ODX-D"));
-            deserializer.writeToFile(odxEModel, String.format(OUTPUT_PATH, "ODX-E"));
+            deserializer.writeToFile(odxDModel, String.format(OUTPUT_PATH, "ODX-D-Output.json"));
+            deserializer.writeToFile(odxEModel, String.format(OUTPUT_PATH, "ODX-E-Output.json"));
 
             //Serialize models to JSON strings
             String ODXDJsonString = deserializer.serializeToJson(odxDModel);
             String ODXEJsonString = deserializer.serializeToJson(odxEModel);
 
             //Compare ODX models
-            comparer.compareODXModels(ODXDJsonString, ODXEJsonString, comparer.desktopPath);
+            comparer.compareODXModels(ODXDJsonString, ODXEJsonString, OUTPUT_PATH);
             //System.out.println(jsonString);
         } catch (IOException e) {
             e.printStackTrace();

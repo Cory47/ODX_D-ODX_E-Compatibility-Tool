@@ -8,24 +8,18 @@
 
 package Parser;
 
-import ODX_D_Model.ODX_D_Model;
-import ODX_E_Model.ODX_E_Model;
-import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class ODX_Comparer {
     CSVWriter csvWriter;
-
     //List of short names common to both ODX-D and ODX-E
     List<String> matches;
     //List of short names only in ODX-D
@@ -33,17 +27,12 @@ public class ODX_Comparer {
     //List of short names only in ODX-E
     List<String> onlyODXE;
 
-    //Get the user's home directory
-    public String userHome = System.getProperty("user.home");
-    //Specify the output path on the user's desktop
-    public String desktopPath = userHome + File.separator + "Desktop" + File.separator + "ODXComparer.csv";
-
     public ODX_Comparer() {
         csvWriter = new CSVWriter();
     }
 
     //Method to compare ODX models and write comparison results to a CSV file
-    public void compareODXModels(String odxD, String odxE, String desktopPath) throws IOException {
+    public void compareODXModels(String odxD, String odxE, String outputPath) throws IOException {
         //Loop through odxD and store each short name field in a hashmap
         JSONObject odxDObject = new JSONObject(odxD);
         JSONObject odxEObject = new JSONObject(odxE);
@@ -52,38 +41,55 @@ public class ODX_Comparer {
         List<String> shortNameODXD = getValuesInObject(odxDObject, "SHORT-NAME");
         List<String> shortNameODXE = getValuesInObject(odxEObject, "SHORT-NAME");
 
-        //Convert ODX-E short names to a set for efficient comparison
-        Set<String> odxEShortNameSet = new HashSet<>(shortNameODXE);
-
-        // Handles null exception error
-        if (matches == null) {
-            matches = new ArrayList<>();
-        } else {
-            //Clear the matches list if not null
-            matches.clear();
-        }
-
-        // Loop through short names in odxD and add matches to list
-        for (String shortName : shortNameODXD) {
-            if (odxEShortNameSet.contains(shortName)) {
-                matches.add(shortName);
-            }
-        }
-
-//        System.out.println(Arrays.toString(shortNameODXD.toArray()));
-//        System.out.println(Arrays.toString(shortNameODXE.toArray()));
-        //Get parameters only in ODX-D and ODX-E
-        onlyODXD = getOnlyODXDParams(shortNameODXE, shortNameODXD);
+        //Add paramaters to Lists
+        matches = getMatchingParams(shortNameODXD, shortNameODXE);
+        onlyODXD = getOnlyODXDParams(shortNameODXD, shortNameODXE);
         onlyODXE = getOnlyODXEParams(shortNameODXD, shortNameODXE);
 
         //Calculate the total number of mismatches by summing the sizes of lists onlyODXD and onlyODXE
-        int mismatch = onlyODXD.size() + onlyODXE.size();
-        //Calculate the total number of names by summing the sizes of lists onlyODXD, onlyODXE, and matches
-        int numNames = onlyODXD.size() + onlyODXE.size() + matches.size();
+        int mismatch = getNumMismatches();
 
-        //System.out.println(Arrays.toString(matches.toArray()));
+        //Calculate the total number of names by summing the sizes of lists onlyODXD, onlyODXE, and matches
+        int numNames = getNumTotal();
+
+        writeToFile(mismatch, numNames, outputPath);
+    }
+
+    //Method to get parameters only in ODX-D
+    public List<String> getMatchingParams(List<String> odxDList, List<String> odxEList) {
+        List<String> matches = new ArrayList<>(odxDList);
+        matches.retainAll(odxEList);
+        return matches;
+    }
+
+    //Method to get parameters only in ODX-D
+    public List<String> getOnlyODXDParams(List<String> odxDList, List<String> odxEList) {
+        List<String> odxDParams = new ArrayList<>(odxDList);
+        odxDParams.removeAll(odxEList);
+        return odxDParams;
+    }
+
+    //Method to get parameters only in ODX-E
+    public List<String> getOnlyODXEParams(List<String> odxDList, List<String> odxEList) {
+        List<String> odxEParams = new ArrayList<>(odxEList);
+        odxEParams.removeAll(odxDList);
+        return odxEParams;
+    }
+
+    public int getNumMatches() {
+        return matches.size();
+    }
+    public int getNumMismatches() {
+        return onlyODXD.size() + onlyODXE.size();
+    }
+    public int getNumTotal() {
+        return matches.size() + onlyODXD.size() + onlyODXE.size();
+    }
+
+    public void writeToFile(int mismatch, int numNames, String outputPath) throws IOException {
+        String filePath = String.format(outputPath, "ComparisonOutput.csv");
         //Write comparison results to the CSV file
-        try (FileWriter writer = new FileWriter(desktopPath)) {
+        try (FileWriter writer = new FileWriter(filePath)) {
             //Write row header "Number of matches"
             writer.write("Number of matches:\n");
             //Write number of matches between ODX-D and ODX-E
@@ -110,26 +116,9 @@ public class ODX_Comparer {
             //Write parameters only in ODX-E
             writer.write(Arrays.toString(onlyODXE.toArray()) + "\n");
         }
-
-        //Prints out the number of matches for each
-        //csvWriter.writeValues(matches, onlyODXD, onlyODXE);
     }
 
-    //Method to get parameters only in ODX-D
-    public List<String> getOnlyODXDParams(List<String> odxEList, List<String> odxDList) {
-        List<String> odxDParams = new ArrayList<>(odxDList);
-        odxDParams.removeAll(odxEList);
-        //System.out.println(Arrays.toString(odxDParams.toArray()));
-        return odxDParams;
-    }
 
-    //Method to get parameters only in ODX-E
-    public List<String> getOnlyODXEParams(List<String> odxDList, List<String> odxEList) {
-        List<String> odxEParams = new ArrayList<>(odxEList);
-        odxEParams.removeAll(odxDList);
-        //System.out.println(Arrays.toString(odxEParams.toArray()));
-        return odxEParams;
-    }
 
     //Source: https://www.baeldung.com/java-jsonobject-get-value
     //Method to extract values associated with a given key from a JSONObject
