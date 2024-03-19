@@ -112,7 +112,7 @@ public class ODX_Comparer {
             //Write parameters only in ODX-D
             writer.write(Arrays.toString(onlyODXD.toArray()) + "\n");
             //Write row header "Only in ODX-E"
-            writer.write("\nOnly in ODX-E:");
+            writer.write("\nOnly in ODX-E:\n");
             //Write parameters only in ODX-E
             writer.write(Arrays.toString(onlyODXE.toArray()) + "\n");
         }
