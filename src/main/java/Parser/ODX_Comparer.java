@@ -11,7 +11,6 @@ package Parser;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,7 +51,9 @@ public class ODX_Comparer {
         //Calculate the total number of names by summing the sizes of lists onlyODXD, onlyODXE, and matches
         int numNames = getNumTotal();
 
-        writeToFile(mismatch, numNames, outputPath);
+        //writeToFile(mismatch, numNames, outputPath);
+        CSVWriter writer = new CSVWriter();
+        writer.writeValues(matches, onlyODXD, onlyODXE, outputPath);
     }
 
     //Method to get parameters only in ODX-D
