@@ -14,6 +14,10 @@ public class Param_Model {
     private String semantic;
     @JsonProperty("TYPE")
     private String type;
+
+    //@JsonProperty("SHORT-NAME")
+    //private String shortName;
+
     @JsonProperty("LONG-NAME")
     private String longName;
     @JsonProperty("BYTE-POSITION")
